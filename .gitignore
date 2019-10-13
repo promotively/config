@@ -1,0 +1,6 @@
+dist/
+node_modules/
+.yarnrc
+.npmrc
+yarn-error.log
+npm-error.log
