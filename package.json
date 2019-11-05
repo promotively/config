@@ -7,12 +7,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://www.github.com/promotively/config"
+    "url": "https://github.com/promotively/config"
   },
   "bugs": {
     "url": "https://github.com/promotively/config/issues"
   },
-  "homepage": "https://www.promotively.com",
+  "homepage": "https://promotively.com",
   "license": "MIT",
   "browser": "dist/lib/browser.js",
   "main": "dist/lib/server.js",

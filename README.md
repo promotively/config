@@ -112,7 +112,7 @@ You can also use a different environment variable or a global variable by config
 
 ## Linting
 
-This library uses [@promotively/eslint-config](https://www.github.com/promotively/eslint-config) for its ESLint configuration.
+This library uses [@promotively/eslint-config](https://github.com/promotively/eslint-config) for its ESLint configuration.
 
 ```
 yarn lint
@@ -128,7 +128,7 @@ Code coverage for the most recent release is also [available online](https://pro
 
 ## Feedback
 
-Feedback is more than welcome via [GitHub](https://www.github.com/promotively), [Twitter](https://www.twitter.com/promotively) or our [Website](https://www.promotively.com).
+Feedback is more than welcome via [GitHub](https://github.com/promotively), [Twitter](https://twitter.com/promotively) or our [Website](https://promotively.com).
 
 ## License
 

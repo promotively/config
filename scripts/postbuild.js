@@ -15,7 +15,7 @@ const addCopyRightToFiles = async () => {
  *
  * @copyright (c) 2019, Promotively
  * @author Steven Ewing <steven.ewing@promotively.com>
- * @see {@link https://www.github.com/promotively/react-redux-data}
+ * @see {@link https://github.com/promotively/react-redux-data}
  * @license MIT
  */\n\n`;
   const files = await getFilesFromDirectory(output);
