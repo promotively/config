@@ -1,7 +1,7 @@
 [![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![NPM Version](https://badge.fury.io/js/%40promotively%2Fconfig.svg)](https://badge.fury.io/js/%40promotively%2Fconfig)
 [![Coverage Status](https://coveralls.io/repos/github/promotively/config/badge.svg)](https://coveralls.io/github/promotively/config)
-[https://codebuild.us-west-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiSFpVT01MYW1acC9RYjJ5aU9Jc0k4K1l0NEgxNG03dWZXTDFtVnhzLzZzSEJ5aXVEeGR2SWpOL3lRZEpDQ2IvekJoTHlMYjVsa3loU1dVeW5YZmdhd3BJPSIsIml2UGFyYW1ldGVyU3BlYyI6Ii91VnNqOFNVTENXNk9FNEciLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master](https://aws.amazon.com/codebuild)
+[![Build Status](https://codebuild.us-west-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiSFpVT01MYW1acC9RYjJ5aU9Jc0k4K1l0NEgxNG03dWZXTDFtVnhzLzZzSEJ5aXVEeGR2SWpOL3lRZEpDQ2IvekJoTHlMYjVsa3loU1dVeW5YZmdhd3BJPSIsIml2UGFyYW1ldGVyU3BlYyI6Ii91VnNqOFNVTENXNk9FNEciLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)](https://aws.amazon.com/codebuild)
 [![GitHub Issues](https://img.shields.io/github/issues/promotively/config.svg)](https://github.com/promotively/config/issues)
 [![GitHub Pull Requests](https://img.shields.io/github/issues-pr/promotively/config.svg)](https://GitHub.com/promotively/config/pull/)
 
