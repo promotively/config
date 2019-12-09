@@ -72,64 +72,68 @@ const openFile = promisify(readFile);
  * @param {Object} data Converts a string containing valid JSON into JSON.
  * @returns {Object} The JSON equivalent of the data object specified.
  */
-const parseJSON = (data) => JSON.parse(data);
+const parseJSON = data => JSON.parse(data);
 
 /**
  * Find the current environment.
  * @function
- * @param {Object} params An object that contains options that override the default options specified in CONFIG_DEFAULT_ENVIRONMENT_OPTIONS.
+ * @param {Object} params An object that contains options that override the
+ * default options specified in CONFIG_DEFAULT_ENVIRONMENT_OPTIONS.
  * @returns {Promise} A promise that resolves the environment name.
-*/
-export const getEnvironment = (params) => new Promise((resolve, reject) => {
-  const options = { ...CONFIG_DEFAULT_ENVIRONMENT_OPTIONS, ...params };
-  const logger = !options.logger ? silentLogger : options.logger;
+ */
+export const getEnvironment = params =>
+  new Promise((resolve, reject) => {
+    const options = { ...CONFIG_DEFAULT_ENVIRONMENT_OPTIONS, ...params };
+    const logger = !options.logger ? silentLogger : options.logger;
 
-  if (typeof global[options.file] !== 'undefined') {
-    logger.info('found environment in global[ENVIRONMENT]...');
+    if (typeof global[options.file] !== 'undefined') {
+      logger.info('found environment in global[ENVIRONMENT]...');
 
-    return resolve(global[options.file]);
-  }
+      return resolve(global[options.file]);
+    }
 
-  if (typeof process.env[options.file] !== 'undefined') {
-    logger.info('found environment in process.env[ENVIRONMENT]...');
+    if (typeof process.env[options.file] !== 'undefined') {
+      logger.info('found environment in process.env[ENVIRONMENT]...');
 
-    return resolve(process.env[options.file]);
-  }
+      return resolve(process.env[options.file]);
+    }
 
-  if (typeof process.env.NODE_ENV !== 'undefined') {
-    logger.info('found environment in process.env.NODE_ENV...');
+    if (typeof process.env.NODE_ENV !== 'undefined') {
+      logger.info('found environment in process.env.NODE_ENV...');
 
-    return resolve(process.env.NODE_ENV);
-  }
+      return resolve(process.env.NODE_ENV);
+    }
 
-  return openFile(`${options.path}/${options.file}`, 'utf8')
-    .then((environment) => {
-      logger.info(`found environment in file://${path.resolve(options.path, options.file)}...`);
+    return openFile(`${options.path}/${options.file}`, 'utf8')
+      .then(environment => {
+        logger.info(`found environment in file://${path.resolve(options.path, options.file)}...`);
 
-      return environment;
-    })
-    .then(resolve)
-    .catch(reject);
-});
+        return environment;
+      })
+      .then(resolve)
+      .catch(reject);
+  });
 
 /**
  * Get the configuration for the current environment.
  * @function
  * @param {String} environment A string containing the name of the environment.
- * @param {Object} params An object containing options that override the default options specified in CONFIG_DEFAULT_OPTIONS.
+ * @param {Object} params An object containing options that override the
+ * default options specified in CONFIG_DEFAULT_OPTIONS.
  * @returns {Promise} A promise that resolves the configuration for the current environment.
  */
-export const getConfig = (environment, params) => new Promise((resolve, reject) => {
-  const options = { ...CONFIG_DEFAULT_OPTIONS, ...params };
-  const logger = !options.logger ? silentLogger : options.logger;
+export const getConfig = (environment, params) =>
+  new Promise((resolve, reject) => {
+    const options = { ...CONFIG_DEFAULT_OPTIONS, ...params };
+    const logger = !options.logger ? silentLogger : options.logger;
 
-  return openFile(`${options.path}/${environment}.json`, 'utf8')
-    .then(parseJSON)
-    .then((config) => {
-      logger.info(`found config in file://${path.resolve(options.path, environment)}.json...`);
+    return openFile(`${options.path}/${environment}.json`, 'utf8')
+      .then(parseJSON)
+      .then(config => {
+        logger.info(`found config in file://${path.resolve(options.path, environment)}.json...`);
 
-      return config;
-    })
-    .then(resolve)
-    .catch(reject);
-});
+        return config;
+      })
+      .then(resolve)
+      .catch(reject);
+  });

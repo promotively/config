@@ -72,7 +72,8 @@ describe('node.js', () => {
     restoreMockedConsole();
   });
 
-  it('getConfig() should resolve the config file for the current environment config file located in the root config folder.', async () => {
+  it(`getConfig() should resolve the config file for the current environment
+  config file located in the root config folder.`, async () => {
     const environment = await getEnvironment(defaultOptions);
     const config = await getConfig(environment, defaultOptions);
 

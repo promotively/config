@@ -67,7 +67,7 @@ const openFile = (...args) => fetch(...args);
  * @param {Object} response Instance of the Response class from the window.fetch API.
  * @returns {String} The string equivalent of the response body.
  */
-const parseText = (response) => response.text();
+const parseText = response => response.text();
 
 /**
  * Converts a response object to JSON.
@@ -75,62 +75,66 @@ const parseText = (response) => response.text();
  * @param {Object} response Instance of the Response class from the window.fetch API.
  * @returns {Object} The JSON equivalent of the response body.
  */
-const parseJSON = (response) => response.json();
+const parseJSON = response => response.json();
 
 /**
  * Find the current environment.
  * @function
- * @param {Object} params An object that contains options that override the default options specified in CONFIG_DEFAULT_ENVIRONMENT_OPTIONS.
+ * @param {Object} params An object that contains options that override the
+ * default options specified in CONFIG_DEFAULT_ENVIRONMENT_OPTIONS.
  * @returns {Promise} A promise that resolves the environment name.
  */
-export const getEnvironment = (params) => new Promise((resolve, reject) => {
-  const options = { ...CONFIG_DEFAULT_ENVIRONMENT_OPTIONS, ...params };
-  const logger = !options.logger ? silentLogger : options.logger;
+export const getEnvironment = params =>
+  new Promise((resolve, reject) => {
+    const options = { ...CONFIG_DEFAULT_ENVIRONMENT_OPTIONS, ...params };
+    const logger = !options.logger ? silentLogger : options.logger;
 
-  if (typeof window !== 'undefined' && typeof window[options.file] !== 'undefined') {
-    logger.info('found environment in window[ENVIRONMENT]...');
+    if (typeof window !== 'undefined' && typeof window[options.file] !== 'undefined') {
+      logger.info('found environment in window[ENVIRONMENT]...');
 
-    return resolve(window[options.file]);
-  }
+      return resolve(window[options.file]);
+    }
 
-  if (typeof process.env !== 'undefined' && process.env.NODE_ENV) {
-    logger.info('found environment in process.env.NODE_ENV...');
+    if (typeof process.env !== 'undefined' && process.env.NODE_ENV) {
+      logger.info('found environment in process.env.NODE_ENV...');
 
-    return resolve(process.env.NODE_ENV);
-  }
+      return resolve(process.env.NODE_ENV);
+    }
 
-  return openFile(`${options.path}/${options.file}`)
-    .then(parseText)
-    .then((environment) => {
-      logger.info(`found environment in /${options.path}/${options.file}...`);
+    return openFile(`${options.path}/${options.file}`)
+      .then(parseText)
+      .then(environment => {
+        logger.info(`found environment in /${options.path}/${options.file}...`);
 
-      return environment;
-    })
-    .then(resolve)
-    .catch(reject);
-});
+        return environment;
+      })
+      .then(resolve)
+      .catch(reject);
+  });
 
 /**
  * Get the configuration for the current environment.
  * @function
  * @param {String} environment A string containing the name of the environment.
- * @param {Object} params An object containing options that override the default options specified in CONFIG_DEFAULT_OPTIONS.
+ * @param {Object} params An object containing options that override the
+ * default options specified in CONFIG_DEFAULT_OPTIONS.
  * @returns {Promise} A promise that resolves the configuration for the current environment.
  */
-export const getConfig = (environment, params) => new Promise((resolve, reject) => {
-  const options = { ...CONFIG_DEFAULT_OPTIONS, ...params };
-  const logger = !options.logger ? silentLogger : options.logger;
+export const getConfig = (environment, params) =>
+  new Promise((resolve, reject) => {
+    const options = { ...CONFIG_DEFAULT_OPTIONS, ...params };
+    const logger = !options.logger ? silentLogger : options.logger;
 
-  return openFile(`${options.path}/${environment}.json`)
-    .then(parseJSON)
-    .then((config) => {
-      const { protocol, host, port } = window.location;
-      const url = `${protocol}//${host}${port ? `:${port}` : ''}${options.path}/${environment}.json`;
+    return openFile(`${options.path}/${environment}.json`)
+      .then(parseJSON)
+      .then(config => {
+        const { protocol, host, port } = window.location;
+        const url = `${protocol}//${host}${port ? `:${port}` : ''}${options.path}/${environment}.json`;
 
-      logger.info(`found config in ${url}...`);
+        logger.info(`found config in ${url}...`);
 
-      return config;
-    })
-    .then(resolve)
-    .catch(reject);
-});
+        return config;
+      })
+      .then(resolve)
+      .catch(reject);
+  });

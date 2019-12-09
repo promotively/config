@@ -21,44 +21,36 @@ const addCopyRightToFiles = async () => {
   const files = await getFilesFromDirectory(output);
   const promises = [];
 
-  files.map((file) => (
-    promises.push(prependToFile(path.resolve(output, file), copyright))
-  ));
+  files.map(file => promises.push(prependToFile(path.resolve(output, file), copyright)));
 
-  return Promise.all(promises)
-    .catch((error) => {
-      throw error;
-    });
+  return Promise.all(promises).catch(error => {
+    throw error;
+  });
 };
 
 const createNewPackageJSONFile = () => {
-  const {
-    author,
-    dependencies,
-    homepage,
-    name,
-    peerDependencies,
-    repository,
-    version
-  } = packageManifest;
+  const { author, dependencies, homepage, name, peerDependencies, repository, version } = packageManifest;
 
-  return createFile(path.resolve(output, 'package.json'), JSON.stringify({
-    author,
-    browser: 'browser.js',
-    dependencies,
-    homepage,
-    main: 'server.js',
-    name,
-    peerDependencies,
-    repository,
-    version
-  })).catch((error) => {
+  return createFile(
+    path.resolve(output, 'package.json'),
+    JSON.stringify({
+      author,
+      browser: 'browser.js',
+      dependencies,
+      homepage,
+      main: 'server.js',
+      name,
+      peerDependencies,
+      repository,
+      version
+    })
+  ).catch(error => {
     throw error;
   });
 };
 
 addCopyRightToFiles()
   .then(createNewPackageJSONFile)
-  .catch((error) => {
+  .catch(error => {
     throw error;
   });

@@ -30,9 +30,7 @@ describe('browser.js', () => {
     fetchMock.get(`/config/${mockEnvironment}.json`, mockConfig);
   });
 
-  afterAll(() => (
-    fetchMock.reset()
-  ));
+  afterAll(() => fetchMock.reset());
 
   it('getEnvironment() should resolve the [ENVIRONMENT] file located in the root config folder.', async () => {
     const environment = await getEnvironment(defaultOptions);
@@ -62,7 +60,6 @@ describe('browser.js', () => {
     delete process.env.NODE_ENV;
   });
 
-
   it('getEnvironment() should use the internal silent logger when params.logger = false.', async () => {
     const restoreMockedConsole = mockConsole();
 
@@ -73,7 +70,8 @@ describe('browser.js', () => {
     restoreMockedConsole();
   });
 
-  it('getConfig() should resolve the config file for the current environment config file located in the root config folder.', async () => {
+  it(`getConfig() should resolve the config file for the current environment
+  config file located in the root config folder.`, async () => {
     global.window = {
       location: {
         host: 'localhost',

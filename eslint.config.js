@@ -1,6 +1,3 @@
 module.exports = {
-  extends: [
-    '@promotively/eslint-config'
-  ]
+  extends: ['@promotively/eslint-config']
 };
-
