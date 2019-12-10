@@ -105,10 +105,10 @@ You can also use a different environment variable or a global variable by config
 
 ## API
 
-| Function | Arguments | Description |
-| --- | --- | --- |
-| `getEnvironment` | (options) | Fetches the environment using NODE_ENV or an ENVIRONMENT file. |
-| `getConfig` | (environment, options) | Set the data loading state. |
+| Function         | Arguments              | Description                                                    |
+| ---------------- | ---------------------- | -------------------------------------------------------------- |
+| `getEnvironment` | (options)              | Fetches the environment using NODE_ENV or an ENVIRONMENT file. |
+| `getConfig`      | (environment, options) | Set the data loading state.                                    |
 
 ## Linting
 

@@ -56,7 +56,8 @@ const CONFIG_DEFAULT_OPTIONS = {
  * @type {Object}
  */
 const silentLogger = {
-  info: () => ({})
+  debug: () => null,
+  info: () => null
 };
 
 /**
@@ -83,30 +84,40 @@ const parseJSON = data => JSON.parse(data);
  */
 export const getEnvironment = params =>
   new Promise((resolve, reject) => {
-    const options = { ...CONFIG_DEFAULT_ENVIRONMENT_OPTIONS, ...params };
+    const options = {
+      ...CONFIG_DEFAULT_ENVIRONMENT_OPTIONS,
+      ...params
+    };
     const logger = !options.logger ? silentLogger : options.logger;
 
-    if (typeof global[options.file] !== 'undefined') {
+    let environment = global[options.file];
+    if (typeof environment !== 'undefined') {
       logger.info('found environment in global[ENVIRONMENT]...');
+      logger.debug(`environment is ${environment}`);
 
-      return resolve(global[options.file]);
+      return resolve(environment);
     }
 
-    if (typeof process.env[options.file] !== 'undefined') {
+    environment = process.env[options.file];
+    if (typeof environment !== 'undefined') {
       logger.info('found environment in process.env[ENVIRONMENT]...');
+      logger.debug(`environment is ${environment}`);
 
-      return resolve(process.env[options.file]);
+      return resolve(environment);
     }
 
-    if (typeof process.env.NODE_ENV !== 'undefined') {
+    environment = process.env.NODE_ENV;
+    if (typeof environment !== 'undefined') {
       logger.info('found environment in process.env.NODE_ENV...');
+      logger.debug(`environment is ${environment}`);
 
-      return resolve(process.env.NODE_ENV);
+      return resolve(environment);
     }
 
     return openFile(`${options.path}/${options.file}`, 'utf8')
       .then(environment => {
         logger.info(`found environment in file://${path.resolve(options.path, options.file)}...`);
+        logger.debug(`environment is ${environment}`);
 
         return environment;
       })
@@ -124,13 +135,17 @@ export const getEnvironment = params =>
  */
 export const getConfig = (environment, params) =>
   new Promise((resolve, reject) => {
-    const options = { ...CONFIG_DEFAULT_OPTIONS, ...params };
+    const options = {
+      ...CONFIG_DEFAULT_OPTIONS,
+      ...params
+    };
     const logger = !options.logger ? silentLogger : options.logger;
 
     return openFile(`${options.path}/${environment}.json`, 'utf8')
       .then(parseJSON)
       .then(config => {
         logger.info(`found config in file://${path.resolve(options.path, environment)}.json...`);
+        logger.debug(`config is ${JSON.stringify(config, null, 2)}`);
 
         return config;
       })

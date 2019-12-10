@@ -18,6 +18,7 @@ const mockEnvironment = 'test';
 const defaultOptions = {
   // Use logger: console to help with debugging
   logger: {
+    debug: () => null,
     info: () => null
   },
   path: './test/mocks/config'
@@ -26,7 +27,8 @@ const defaultOptions = {
 describe('node.js', () => {
   delete process.env.NODE_ENV;
 
-  it('getEnvironment() should resolve the [ENVIRONMENT] file located in the root config folder.', async () => {
+  it(`getEnvironment() should resolve the [ENVIRONMENT] file located in the
+  root config folder.`, async () => {
     const environment = await getEnvironment(defaultOptions);
 
     expect(environment).toEqual(mockEnvironment);
@@ -35,7 +37,10 @@ describe('node.js', () => {
   it('getEnvironment() should resolve the process.env.NODE_ENV variable.', async () => {
     process.env.NODE_ENV = mockEnvironment;
 
-    const environment = await getEnvironment({ ...defaultOptions, logger: false });
+    const environment = await getEnvironment({
+      ...defaultOptions,
+      logger: false
+    });
 
     delete process.env.NODE_ENV;
 
@@ -62,7 +67,8 @@ describe('node.js', () => {
     expect(environment).toEqual(mockEnvironment);
   });
 
-  it('getEnvironment() should use the internal silent logger when params.logger = false.', async () => {
+  it(`getEnvironment() should use the internal silent logger when params.logger
+  is set to false.`, async () => {
     const restoreMockedConsole = mockConsole();
 
     await getEnvironment(defaultOptions);
@@ -80,12 +86,19 @@ describe('node.js', () => {
     expect(config).toEqual(mockConfig);
   });
 
-  it('getConfig() should use the internal silent logger when params.logger = false.', async () => {
+  it(`getConfig() should use the internal silent logger when params.logger is
+  set to false.`, async () => {
     const restoreMockedConsole = mockConsole();
 
-    const environment = await getEnvironment({ ...defaultOptions, logger: false });
+    const environment = await getEnvironment({
+      ...defaultOptions,
+      logger: false
+    });
 
-    await getConfig(environment, { ...defaultOptions, logger: false });
+    await getConfig(environment, {
+      ...defaultOptions,
+      logger: false
+    });
 
     expect(console.log).not.toHaveBeenCalled();
 

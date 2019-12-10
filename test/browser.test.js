@@ -18,6 +18,7 @@ const mockEnvironment = 'test';
 const defaultOptions = {
   // Use logger: console to help with debugging
   logger: {
+    debug: () => null,
     info: () => null
   }
 };
@@ -32,7 +33,8 @@ describe('browser.js', () => {
 
   afterAll(() => fetchMock.reset());
 
-  it('getEnvironment() should resolve the [ENVIRONMENT] file located in the root config folder.', async () => {
+  it(`getEnvironment() should resolve the [ENVIRONMENT] file located in the
+  root config folder.`, async () => {
     const environment = await getEnvironment(defaultOptions);
 
     expect(environment).toEqual(mockEnvironment);
@@ -43,7 +45,10 @@ describe('browser.js', () => {
       ENVIRONMENT: mockEnvironment
     };
 
-    const environment = await getEnvironment({ ...defaultOptions, logger: false });
+    const environment = await getEnvironment({
+      ...defaultOptions,
+      logger: false
+    });
 
     expect(environment).toEqual(mockEnvironment);
 
@@ -60,7 +65,8 @@ describe('browser.js', () => {
     delete process.env.NODE_ENV;
   });
 
-  it('getEnvironment() should use the internal silent logger when params.logger = false.', async () => {
+  it(`getEnvironment() should use the internal silent logger when params.logger
+  is set to false.`, async () => {
     const restoreMockedConsole = mockConsole();
 
     await getEnvironment(defaultOptions);
@@ -88,7 +94,8 @@ describe('browser.js', () => {
     delete global.window;
   });
 
-  it('getConfig() should use the internal silent logger when params.logger = false.', async () => {
+  it(`getConfig() should use the internal silent logger when params.logger is
+  set to false.`, async () => {
     global.window = {
       location: {
         host: 'localhost',
@@ -100,7 +107,10 @@ describe('browser.js', () => {
     const restoreMockedConsole = mockConsole();
     const environment = await getEnvironment(defaultOptions);
 
-    await getConfig(environment, { ...defaultOptions, logger: false });
+    await getConfig(environment, {
+      ...defaultOptions,
+      logger: false
+    });
 
     expect(console.log).not.toHaveBeenCalled();
 

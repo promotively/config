@@ -52,6 +52,7 @@ const CONFIG_DEFAULT_OPTIONS = {
  * @type {Object}
  */
 const silentLogger = {
+  debug: () => null,
   info: () => null
 };
 
@@ -86,7 +87,10 @@ const parseJSON = response => response.json();
  */
 export const getEnvironment = params =>
   new Promise((resolve, reject) => {
-    const options = { ...CONFIG_DEFAULT_ENVIRONMENT_OPTIONS, ...params };
+    const options = {
+      ...CONFIG_DEFAULT_ENVIRONMENT_OPTIONS,
+      ...params
+    };
     const logger = !options.logger ? silentLogger : options.logger;
 
     if (typeof window !== 'undefined' && typeof window[options.file] !== 'undefined') {
@@ -105,6 +109,7 @@ export const getEnvironment = params =>
       .then(parseText)
       .then(environment => {
         logger.info(`found environment in /${options.path}/${options.file}...`);
+        logger.debug(`environment is ${environment}`);
 
         return environment;
       })
@@ -122,7 +127,10 @@ export const getEnvironment = params =>
  */
 export const getConfig = (environment, params) =>
   new Promise((resolve, reject) => {
-    const options = { ...CONFIG_DEFAULT_OPTIONS, ...params };
+    const options = {
+      ...CONFIG_DEFAULT_OPTIONS,
+      ...params
+    };
     const logger = !options.logger ? silentLogger : options.logger;
 
     return openFile(`${options.path}/${environment}.json`)
@@ -132,6 +140,7 @@ export const getConfig = (environment, params) =>
         const url = `${protocol}//${host}${port ? `:${port}` : ''}${options.path}/${environment}.json`;
 
         logger.info(`found config in ${url}...`);
+        logger.debug(`config is ${JSON.stringify(config, null, 2)}`);
 
         return config;
       })
