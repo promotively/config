@@ -11,11 +11,11 @@ Universal/isomorphic javascript library for configuration file fetching.
 
 ## Why?
 
-* You need a simple and consistent cross platform interface to handle runtime configuration file management.
-* You need to have a single set of build artifacts that can be deployed to any environment.
-* You want to use the same configuration across your browser and server apps or development tool configuration files.
-* You want the ability to quickly change configurations or environments without having to perform application builds. 
-* You don't wan't to use webpack.DefinePlugin.
+- You need a simple and consistent cross platform interface to handle runtime configuration file management.
+- You need to have a single set of build artifacts that can be deployed to any environment.
+- You want to use the same configuration across your browser and server apps or development tool configuration files.
+- You want the ability to quickly change configurations or environments without having to perform application builds.
+- You don't wan't to use webpack.DefinePlugin.
 
 ## Installation
 
@@ -29,27 +29,28 @@ With NPM
 
 ## Example
 
-A working example is available inside the ```/example``` folder.
+A working example is available inside the `/example` folder.
 
-Run ```node example/app.js``` to see your current environment and config.
+Run `node example/app.js` to see your current environment and config.
 
 ## Documentation
 
 The source code is documented using JSDoc syntax and documentation is generated using [esdoc](https://github.com/esdoc/esdoc).
 
-Once you have executed ```yarn docs``` documentation is available inside the ```dist/docs``` folder.
+Once you have executed `yarn docs` documentation is available inside the `dist/docs` folder.
 
 Documentation for the most recent release is also [available online](https://promotively-config.s3-us-west-1.amazonaws.com/docs/index.html).
 
 ## Setup
 
-Create a file ```config/ENVIRONMENT``` containing the word development.
-Create a file ```config/development.json``` containing your app config for development usage.
-Create a file ```config/production.json``` containing your app config for production usage.
+Create a file `config/ENVIRONMENT` containing the word development.
+Create a file `config/development.json` containing your app config for development usage.
+Create a file `config/production.json` containing your app config for production usage.
 
 ```javascript
 // (optional) config/ENVIRONMENT
 ```
+
 ```text
 development
 ```
@@ -57,6 +58,7 @@ development
 ```javascript
 // config/development.json
 ```
+
 ```json
 {
   "APP_PROTOCOL": "http",
@@ -68,6 +70,7 @@ development
 ```javascript
 // config/production.json
 ```
+
 ```json
 {
   "APP_PROTOCOL": "https",
@@ -100,7 +103,7 @@ const fetchConfig = async () => {
 export default fetchConfig;
 ```
 
-In the above example when using ```getEnvironment()``` the NODE_ENV environment variable will be used if set otherwise an ENVIRONMENT variable/file will be used. (global > environment > file)
+In the above example when using `getEnvironment()` the NODE_ENV environment variable will be used if set otherwise an ENVIRONMENT variable/file will be used. (global > environment > file)
 You can also use a different environment variable or a global variable by configuring options.file with the name of the variable.
 
 ## API
@@ -122,13 +125,20 @@ yarn lint
 
 This library has 100% unit test code coverage.
 
-Code coverage is available inside the ```dist/coverage``` folder after running ```yarn test```.
+Code coverage is available inside the `dist/coverage` folder after running `yarn test`.
 
 Code coverage for the most recent release is also [available online](https://promotively-config.s3-us-west-1.amazonaws.com/tests/index.html).
 
-## Feedback
+## Contact
 
-Feedback is more than welcome via [GitHub](https://github.com/promotively), [Twitter](https://twitter.com/promotively) or our [Website](https://promotively.com).
+Feel free to reach out using any of the below methods:
+
+- [GitHub](https://github.com/promotively)
+- [FaceBook](https://facebook.com/promotively)
+- [Twitter](https://twitter.com/promotively)
+- [LinkedIn](https://linkedin.com/company/promotively)
+- [Website](https://promotively.com).
+- [Email](mailto:hello@promotively.com)
 
 ## License
 
