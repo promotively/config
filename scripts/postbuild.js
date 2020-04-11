@@ -13,7 +13,7 @@ const addCopyRightToFiles = async () => {
   const copyright = `/*
  * @promotively/config
  *
- * @copyright (c) 2019, Promotively
+ * @copyright (c) 2018-2020, Promotively
  * @author Steven Ewing <steven.ewing@promotively.com>
  * @see {@link https://github.com/promotively/react-redux-data}
  * @license MIT

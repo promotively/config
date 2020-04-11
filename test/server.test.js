@@ -1,7 +1,7 @@
 /*
  * @promotively/config
  *
- * @copyright (c) 2019, Promotively
+ * @copyright (c) 2018-2020, Promotively
  * @author Steven Ewing <steven.ewing@promotively.com>
  * @see {@link https://github.com/promotively/config}
  * @license MIT
@@ -10,9 +10,9 @@
 /* eslint-disable no-console */
 
 import 'isomorphic-fetch';
+import mockConsole from 'jest-mock-console';
 import { getEnvironment, getConfig } from '../src/server';
 import mockConfig from './mocks/config/test.json';
-import mockConsole from 'jest-mock-console';
 
 const mockEnvironment = 'test';
 const defaultOptions = {
