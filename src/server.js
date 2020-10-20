@@ -1,38 +1,41 @@
-/*
- * @promotively/config
+/**
+ * promotively/config
  *
- * @copyright (c) 2018-2020, Promotively
+ * @copyright Promotively (c) 2020
  * @author Steven Ewing <steven.ewing@promotively.com>
- * @see {@link https://github.com/promotively/config}
  * @license MIT
+ *
+ * @see {@link https://promotively.com}
+ * @see {@link https://github.com/promotively/config}
  */
 
 import path from 'path';
 import { promisify } from 'util';
 import { readFile } from 'fs';
 
-/*
- * @see {@link https://github.com/promotively/config}
- */
+/* eslint-disable promise/prefer-await-to-then */
 
 /**
  * Value for the CONFIG_FOLDER_PATH option which is used when calling getConfig().
+ *
  * @constant
- * @type {Object}
+ * @type {object}
  */
 const CONFIG_FOLDER_PATH = './config';
 
 /**
  * Value for the CONFIG_ENVIRONMENT_FILE_NAME default option which can be used when calling getEnvironment().
+ *
  * @constant
- * @type {Object}
+ * @type {object}
  */
 const CONFIG_ENVIRONMENT_FILE_NAME = 'ENVIRONMENT';
 
 /**
  * Value for the CONFIG_DEFAULT_ENVIRONMENT_OPTIONS default options object which is used in getEnvironment().
+ *
  * @constant
- * @type {Object}
+ * @type {object}
  */
 const CONFIG_DEFAULT_ENVIRONMENT_OPTIONS = {
   file: CONFIG_ENVIRONMENT_FILE_NAME,
@@ -42,8 +45,9 @@ const CONFIG_DEFAULT_ENVIRONMENT_OPTIONS = {
 
 /**
  * Value for the CONFIG_DEFAULT_OPTIONS default options object which is used in getConfig().
+ *
  * @constant
- * @type {Object}
+ * @type {object}
  */
 const CONFIG_DEFAULT_OPTIONS = {
   logger: console,
@@ -52,8 +56,9 @@ const CONFIG_DEFAULT_OPTIONS = {
 
 /**
  * Used to mute console output from the library when params.logger is set to false.
+ *
  * @constant
- * @type {Object}
+ * @type {object}
  */
 const silentLogger = {
   debug: () => null,
@@ -62,6 +67,7 @@ const silentLogger = {
 
 /**
  * Gets files using the fs API.
+ *
  * @param  {...any} args Pass arguments through to fs.readFile directly.
  * @returns {Promise} The promise that is returned from the promisified version of the call to the fs API.
  */
@@ -69,16 +75,18 @@ const openFile = promisify(readFile);
 
 /**
  * Converts a data object to JSON.
+ *
  * @function
- * @param {Object} data Converts a string containing valid JSON into JSON.
- * @returns {Object} The JSON equivalent of the data object specified.
+ * @param {object} data Converts a string containing valid JSON into JSON.
+ * @returns {object} The JSON equivalent of the data object specified.
  */
 const parseJSON = data => JSON.parse(data);
 
 /**
  * Find the current environment.
+ *
  * @function
- * @param {Object} params An object that contains options that override the
+ * @param {object} params An object that contains options that override the
  * default options specified in CONFIG_DEFAULT_ENVIRONMENT_OPTIONS.
  * @returns {Promise} A promise that resolves the environment name.
  */
@@ -127,9 +135,10 @@ export const getEnvironment = params =>
 
 /**
  * Get the configuration for the current environment.
+ *
  * @function
- * @param {String} environment A string containing the name of the environment.
- * @param {Object} params An object containing options that override the
+ * @param {string} environment A string containing the name of the environment.
+ * @param {object} params An object containing options that override the
  * default options specified in CONFIG_DEFAULT_OPTIONS.
  * @returns {Promise} A promise that resolves the configuration for the current environment.
  */

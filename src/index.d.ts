@@ -1,10 +1,12 @@
-/*
- * @promotively/react-redux-data
+/**
+ * promotively/config
  *
- * @copyright (c) 2018-2020, Promotively
+ * @copyright Promotively (c) 2020
  * @author Steven Ewing <steven.ewing@promotively.com>
- * @see {@link https://github.com/promotively/config}
  * @license MIT
+ *
+ * @see {@link https://promotively.com}
+ * @see {@link https://github.com/promotively/config}
  */
 
 /**
@@ -13,17 +15,20 @@
 
 // Type definitions for @promotively/config
 
-export interface iEnvironmentOptions {
+// config interfaces
+export interface EnvironmentOptions {
   file?: String;
   logger?: Object;
   path?: String;
 }
 
-export interface iConfigOptions {
+export interface ConfigOptions {
   file?: String;
   logger?: Object;
   path?: String;
 }
 
-export function getEnvironment(params?: iEnvironmentOptions): Promise<String>;
-export function getConfig(environment: String, params?: iConfigOptions): Promise<Object>;
+// config helpers
+
+export function getEnvironment(params?: EnvironmentOptions): Promise<String>;
+export function getConfig(environment: String, params?: ConfigOptions): Promise<Object>;

@@ -10,12 +10,13 @@ const packageManifest = require('../package.json');
 const output = './dist/lib';
 
 const addCopyRightToFiles = async () => {
-  const copyright = `/*
- * @promotively/config
+  const copyright = `/**
+ * promotively/config
  *
- * @copyright (c) 2018-2020, Promotively
+ * @copyright Promotively (c) 2020
  * @author Steven Ewing <steven.ewing@promotively.com>
- * @see {@link https://github.com/promotively/react-redux-data}
+ * @see {@link https://promotively.com}
+ * @see {@link https://github.com/promotively/config}
  * @license MIT
  */\n\n`;
   const files = await getFilesFromDirectory(output);

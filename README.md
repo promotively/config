@@ -1,3 +1,5 @@
+# @promotively/config
+
 [![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![NPM Version](https://badge.fury.io/js/%40promotively%2Fconfig.svg)](https://badge.fury.io/js/%40promotively%2Fconfig)
 [![Coverage Status](https://coveralls.io/repos/github/promotively/config/badge.svg)](https://coveralls.io/github/promotively/config)
@@ -5,17 +7,14 @@
 [![GitHub Issues](https://img.shields.io/github/issues/promotively/config.svg)](https://github.com/promotively/config/issues)
 [![GitHub Pull Requests](https://img.shields.io/github/issues-pr/promotively/config.svg)](https://GitHub.com/promotively/config/pull/)
 
-# @promotively/config
-
-Universal/isomorphic javascript library for configuration file fetching.
+Universal/isomorphic javascript/typescript library for configuration file fetching.
 
 ## Why?
 
 - You need a simple and consistent cross platform interface to handle runtime configuration file management.
-- You need to have a single set of build artifacts that can be deployed to any environment.
+- You can't embed your configurations using solutions like like dotenv or webpack.DefinePlugin because you need to have a single set of build artifacts that can be deployed to any environment.
 - You want to use the same configuration across your browser and server apps or development tool configuration files.
 - You want the ability to quickly change configurations or environments without having to perform application builds.
-- You don't wan't to use webpack.DefinePlugin.
 
 ## Installation
 
@@ -35,7 +34,7 @@ Run `node example/app.js` to see your current environment and config.
 
 ## Documentation
 
-The source code is documented using JSDoc syntax and documentation is generated using [esdoc](https://github.com/esdoc/esdoc).
+The source code is documented using JSDoc syntax and documentation is generated using [jsdoc](https://github.com/jsdoc/jsdoc).
 
 Once you have executed `yarn docs` documentation is available inside the `dist/docs` folder.
 
@@ -117,9 +116,7 @@ You can also use a different environment variable or a global variable by config
 
 This library uses [@promotively/eslint-config](https://github.com/promotively/eslint-config) for its ESLint configuration.
 
-```
-yarn lint
-```
+`yarn lint`
 
 ## Tests
 

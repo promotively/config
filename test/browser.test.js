@@ -1,8 +1,9 @@
-/*
- * @promotively/config
+/**
+ * promotively/config
  *
- * @copyright (c) 2018-2020, Promotively
+ * @copyright Promotively (c) 2020
  * @author Steven Ewing <steven.ewing@promotively.com>
+ * @see {@link https://promotively.com}
  * @see {@link https://github.com/promotively/config}
  * @license MIT
  */
